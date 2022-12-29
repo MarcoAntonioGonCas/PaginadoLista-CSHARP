@@ -17,7 +17,37 @@ namespace _095_Math
         }
         static void Main(string[] args)
         {
+            List<int> list = new List<int>();
 
+
+            LlenarEnum(list, 1, 51);
+
+            MostrarListaEnLinea(list);
+
+
+           
+            MostrarListaEnLinea(list.SkipEvil(10).TakeWhileEvil(e=>e!=12));
+
+        }
+        static void MostrarListaEnLinea<T>(IEnumerable<T> lst)
+        {
+            Console.Write("[");
+
+            for (int i = 0; i < lst.Count(); i++)
+            {
+                Console.Write(lst.ElementAt(i).ToString());
+                
+                if(i != lst.Count() - 1)
+                {
+                    Console.Write(" , ");
+                }
+            }
+
+            Console.WriteLine("]");
+        }
+
+        static void PruebasPaginadoLista()
+        {
             List<int> list = new List<int>();
 
 
@@ -26,9 +56,9 @@ namespace _095_Math
 
 
             PageList<int> listPaginada = list.ToPageList(10);
-            
+
             int pagina;
-            
+
 
             do
             {
@@ -42,7 +72,7 @@ namespace _095_Math
                 Console.Write("Selecciona la pagina: ");
                 pagina = Convert.ToInt32(Console.ReadLine());
 
-                if(pagina >0&& pagina <= listPaginada.TotalPaginas)
+                if (pagina > 0 && pagina <= listPaginada.TotalPaginas)
                 {
                     Console.Clear();
                     Console.WriteLine("\tMostrando paginado\n");

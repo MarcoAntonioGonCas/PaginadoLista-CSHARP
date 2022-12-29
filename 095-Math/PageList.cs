@@ -94,5 +94,64 @@ namespace _095_Math
 
             return page;
         }
+
+        public static IEnumerable<T> SkipEvil<T>(this IEnumerable<T> enumrable,int numElementos)
+        {
+            List<T> newEnumerable=new List<T>();
+            T[] arrAux = enumrable.ToArray();
+
+            for(int i = numElementos; i < arrAux.Length;i++)
+            {
+                newEnumerable.Add(arrAux[i]);
+            }
+
+            return newEnumerable;
+        }
+
+        public static IEnumerable<T> SkipWhileEvil<T>(this IEnumerable<T> enumrable, Predicate<T> predicate)
+        {
+            List<T> newEnumerable = new List<T>();
+            T[] arrAux = enumrable.ToArray();
+            int i = 0;
+
+            while(i < arrAux.Length && predicate(arrAux[i]))
+            {
+                i++;
+            }
+
+            for (; i < arrAux.Length; i++ )
+            {
+                newEnumerable.Add(arrAux[i]);
+            }
+
+            return newEnumerable;
+        }
+
+        public static IEnumerable<T> TakeEvil<T>(this IEnumerable<T> enumrable, int numElementos)
+        {
+            List<T> newEnumerable = new List<T>();
+            T[] arrAux = enumrable.ToArray();
+
+            int i = 0;
+            while(i < arrAux.Length && i < numElementos)
+            {
+                newEnumerable.Add(arrAux[i]);
+                i++;
+            }
+            return newEnumerable;
+        }
+        public static IEnumerable<T> TakeWhileEvil<T>(this IEnumerable<T> enumrable, Predicate<T> predicate)
+        {
+            List<T> newEnumerable = new List<T>();
+            T[] arrAux = enumrable.ToArray();
+
+            int i = 0;
+            while (i < arrAux.Length && predicate(arrAux[i]))
+            {
+                newEnumerable.Add(arrAux[i]);
+                i++;
+            }
+            return newEnumerable;
+        }
     }
 }
